@@ -19,40 +19,40 @@ import com.fi.springboot.onlineparkingsystem.entity.City;
 import com.fi.springboot.onlineparkingsystem.service.CityService;
 
 @RestController
-@RequestMapping("city")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class CityController
 {
 	@Autowired
 	CityService cityService;
 
-	@GetMapping("getAllCities")
+	@GetMapping("api/city")
 	public List<City>getAllCities()
 	{
 		return cityService.getAllCities();
 	}
-	
-	@GetMapping("getCityById")
-	public City getCityById(@RequestParam(name="c_id") int id)
+
+	@GetMapping("api/city/{id}")
+	public City getCityById(@RequestParam(name="id") long id)
 	{
 		return cityService.getCityById(id);
 	}
-	
-	
-	@PostMapping("registerCity")
+
+
+	@PostMapping("api/city")
 	public City registerCity(@RequestBody City city)
 	{
 		return cityService.registerCity(city);
 	}
-	
-	@PutMapping("updateCity/{id}")
-	public ResponseEntity<City> updateCity(@PathVariable(value="id") int id,@RequestBody City cityDetails)
+
+	@PutMapping("api/city/{id}")
+	public ResponseEntity<City> updateCity(@PathVariable(value="id") long id,@RequestBody City cityDetails)
 	{
 		return cityService.updateCity(id, cityDetails);
 	}
-	
-	@DeleteMapping("deleteCity/{id}")
-	public String deleteCity(@PathVariable int id)
+
+	@DeleteMapping("api/city/{id}")
+	public String deleteCity(@PathVariable long id)
 	{
 		return cityService.deleteCity(id);
 	}

@@ -23,7 +23,7 @@ public class CityServiceImpl implements CityService
 	}
 
 	@Override
-	public City getCityById(int id) 
+	public City getCityById(long id) 
 	{
 		return cityRepository.findById(id).get();
 	}
@@ -35,18 +35,18 @@ public class CityServiceImpl implements CityService
 	}
 
 	@Override
-	public ResponseEntity<City> updateCity(int id, City cityDetails) 
+	public ResponseEntity<City> updateCity(long id, City cityDetails) 
 	{
 		City city=cityRepository.findById(id).get();
-		
-		city.setCname(cityDetails.getCname());
-		
+
+		city.setName(cityDetails.getName());
+
 		final City updateCity=cityRepository.save(city);
 		return ResponseEntity.ok(updateCity);
 	}
 
 	@Override
-	public String deleteCity(int id)
+	public String deleteCity(long id)
 	{
 		Optional<City> city=cityRepository.findById(id);
 		if(city.isPresent())
@@ -59,5 +59,4 @@ public class CityServiceImpl implements CityService
 			throw new RuntimeException("City not found for the id : "+ id);
 		}
 	}
-
 }

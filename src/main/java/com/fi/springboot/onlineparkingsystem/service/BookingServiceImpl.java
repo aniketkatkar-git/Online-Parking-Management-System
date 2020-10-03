@@ -13,7 +13,7 @@ import com.fi.springboot.onlineparkingsystem.repository.BookingRepository;
 @Service
 public class BookingServiceImpl implements BookingService
 {
-	
+
 	@Autowired
 	BookingRepository bookingRepository;
 
@@ -24,7 +24,7 @@ public class BookingServiceImpl implements BookingService
 	}
 
 	@Override
-	public Booking getBookingById(int id) 
+	public Booking getBookingById(long id) 
 	{
 		return bookingRepository.findById(id).get();
 	}
@@ -36,26 +36,26 @@ public class BookingServiceImpl implements BookingService
 	}
 
 	@Override
-	public ResponseEntity<Booking> updateBooking(int id, Booking bookingDetails) 
+	public ResponseEntity<Booking> updateBooking(long id, Booking bookingDetails) 
 	{
 		Booking booking=bookingRepository.findById(id).get();
-		
-		booking.setBdate(bookingDetails.getBdate());
-		booking.setTsslots(bookingDetails.getTsslots());
-		booking.setPlname(bookingDetails.getPlname());
-		booking.setAname(bookingDetails.getAname());
-		booking.setCname(bookingDetails.getCname());
-		booking.setBcharges(bookingDetails.getBcharges());
-		booking.setBmode(bookingDetails.getBmode());
-		booking.setBpaymentstatus(bookingDetails.getBpaymentstatus());
-		booking.setStatus(bookingDetails.getStatus());
-		
+
+		booking.setDate(booking.getDate());
+		booking.setTimeslot_slots(booking.getTimeslot_slots());
+		booking.setParkinglocation_name(booking.getParkinglocation_name());
+		booking.setArea_name(booking.getArea_name());
+		booking.setCity_name(booking.getCity_name());
+		booking.setCharges(booking.getCharges());
+		booking.setPayment_mode(booking.getPayment_mode());
+		booking.setPayment_status(booking.getPayment_status());
+		booking.setStatus(booking.getStatus());
+
 		final Booking updateBooking=bookingRepository.save(booking);
 		return ResponseEntity.ok(updateBooking);
 	}
 
 	@Override
-	public String deleteBooking(int id) 
+	public String deleteBooking(long id) 
 	{
 		Optional<Booking> booking=bookingRepository.findById(id);
 		if(booking.isPresent())
@@ -68,5 +68,4 @@ public class BookingServiceImpl implements BookingService
 			throw new RuntimeException("Booking not found for the id : "+ id);
 		}
 	}
-
 }

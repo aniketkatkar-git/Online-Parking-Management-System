@@ -11,8 +11,8 @@ import com.fi.springboot.onlineparkingsystem.entity.Feedback;
 public interface FeedbackService 
 {
 	List<Feedback> getAllFeedbacks();
-	Feedback getFeedbackById(int id);
+	Feedback getFeedbackById(long id);
 	public Feedback registerFeedback(Feedback feedback);
-	public ResponseEntity<Feedback> updateFeedback(int id,Feedback feedbackDetails);
-	public String deleteFeedback(int id);
+	public ResponseEntity<Feedback> updateFeedback(long id,Feedback feedbackDetails);
+	public String deleteFeedback(long id);
 }

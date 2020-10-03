@@ -19,44 +19,44 @@ import com.fi.springboot.onlineparkingsystem.entity.Owner;
 import com.fi.springboot.onlineparkingsystem.service.OwnerService;
 
 @RestController
-@RequestMapping("owner")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class OwnerController 
 {
 	@Autowired
 	OwnerService ownerService;
-	
-	@GetMapping("getAllOwners")
+
+	@GetMapping("api/owner")
 	public List<Owner>getAllOwners()
 	{
 		return ownerService.getAllOwners();
 	}
-	
-	@GetMapping("getOwnerById")
+
+	@GetMapping("api/owner/{id}")
 	public Owner getOwnerById(@RequestParam(name="id") int id)
 	{
 		return ownerService.getOwnerById(id);
 	}
-	
-	@GetMapping("login")
-	public int  validate(@RequestParam(name="o_username") String Username,@RequestParam(name="o_password") String Password)
+
+	@GetMapping("api/owner/login")
+	public int  validate(@RequestParam(name="username") String Username,@RequestParam(name="password") String Password)
 	{
-		 return ownerService.login(Username, Password);
+		return ownerService.login(Username, Password);
 	}
-	
-	@PostMapping("registerOwner")
+
+	@PostMapping("api/owner")
 	public Owner registerOwner(@RequestBody Owner owner)
 	{
 		return ownerService.registerOwner(owner);
 	}
-	
-	@PutMapping("updateOwner/{id}")
+
+	@PutMapping("api/owner/{id}")
 	public ResponseEntity<Owner> updateOwner(@PathVariable(value="id") int id,@RequestBody Owner ownerDetails)
 	{
 		return ownerService.updateOwner(id, ownerDetails);
 	}
-	
-	@DeleteMapping("deleteOwner/{id}")
+
+	@DeleteMapping("api/owner/{id}")
 	public String deleteOwner(@PathVariable int id)
 	{
 		return ownerService.deleteOwner(id);

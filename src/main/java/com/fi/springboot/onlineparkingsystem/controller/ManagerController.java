@@ -19,45 +19,45 @@ import com.fi.springboot.onlineparkingsystem.entity.Manager;
 import com.fi.springboot.onlineparkingsystem.service.ManagerService;
 
 @RestController
-@RequestMapping("manager")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class ManagerController 
 {
 	@Autowired
 	ManagerService managerService;
-	
-	@GetMapping("getAllManagers")
+
+	@GetMapping("api/manager")
 	public List<Manager>getAllManagers()
 	{
 		return managerService.getAllManagers();
 	}
-	
-	@GetMapping("getManagerById")
+
+	@GetMapping("api/manager/{id}")
 	public Manager getManagerById(@RequestParam(name="id") int id)
 	{
 		return managerService.getManagerById(id);
 	}
-	
-	@GetMapping("login")
-	public int  validate(@RequestParam(name="m_username") String Username,@RequestParam(name="m_password") String Password)
+
+	@GetMapping("api/manager/login")
+	public int  validate(@RequestParam(name="musername") String Username,@RequestParam(name="spassword") String Password)
 	{
-		 return managerService.login(Username, Password);
+		return managerService.login(Username, Password);
 	}
-	
-	@PostMapping("registerManager")
+
+	@PostMapping("api/manager")
 	public Manager registerManager(@RequestBody Manager manager)
 	{
 		return managerService.registerManager(manager);
 	}
-	
-	@PutMapping("updateManager/{id}")
-	public ResponseEntity<Manager> updateManager(@PathVariable(value="id") int id,@RequestBody Manager managerDetails)
+
+	@PutMapping("api/manager/{id}")
+	public ResponseEntity<Manager> updateManager(@PathVariable(value="id") long id,@RequestBody Manager managerDetails)
 	{
 		return managerService.updateManager(id, managerDetails);
 	}
-	
-	@DeleteMapping("deleteManager/{id}")
-	public String deleteManager(@PathVariable int id)
+
+	@DeleteMapping("api/manager/{id}")
+	public String deleteManager(@PathVariable long id)
 	{
 		return managerService.deleteManager(id);
 	}

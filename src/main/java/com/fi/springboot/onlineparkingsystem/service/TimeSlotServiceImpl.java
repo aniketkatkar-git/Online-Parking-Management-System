@@ -23,17 +23,17 @@ public class TimeSlotServiceImpl implements TimeSlotService
 	}
 
 	@Override
-	public TimeSlot getSlotById(int id) 
+	public TimeSlot getSlotById(long id) 
 	{
 		return slotRepository.findById(id).get();
 	}
 
 	@Override
-	public List<TimeSlot> getTimeslotByPId(int pid) 
+	public List<TimeSlot> getTimeslotByParkingLocationId(long parkingLocation_id) 
 	{
-		return slotRepository.findByPid(pid);
+		return slotRepository.findByParkingLocationId(parkingLocation_id);
 	}
-	
+
 	@Override
 	public TimeSlot registerSlot(TimeSlot slot) 
 	{
@@ -41,29 +41,28 @@ public class TimeSlotServiceImpl implements TimeSlotService
 	}
 
 	@Override
-	public ResponseEntity<TimeSlot> updateSlot(int id, TimeSlot slotDetails) 
+	public ResponseEntity<TimeSlot> updateSlot(long id, TimeSlot slotDetails) 
 	{
 		TimeSlot slot=slotRepository.findById(id).get();
-		
-		slot.setTsslots(slotDetails.getTsslots());
+
+		slot.setSlots(slotDetails.getSlots());
 
 		final TimeSlot updateSlot=slotRepository.save(slot);
 		return ResponseEntity.ok(updateSlot);
-		
 	}
 
 	@Override
-	public String deleteSlot(int id) 
+	public String deleteSlot(long id) 
 	{
 		Optional<TimeSlot> slot=slotRepository.findById(id);
 		if(slot.isPresent())
 		{
 			slotRepository.delete(slot.get());
-			return " TimeSlot is deleted ";
+			return " Timeslot is deleted ";
 		}
 		else
 		{
-			throw new RuntimeException("TimeSlot not found for the id : "+ id);
+			throw new RuntimeException("Timeslot not found for the id : "+ id);
 		}
 	}
 }

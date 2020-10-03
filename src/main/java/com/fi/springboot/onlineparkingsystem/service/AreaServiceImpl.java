@@ -23,15 +23,15 @@ public class AreaServiceImpl implements AreaService
 	}
 
 	@Override
-	public Area getAreaById(int id) 
+	public Area getAreaById(long id) 
 	{
 		return areaRepository.findById(id).get();
 	}
-	
+
 	@Override
-	public List<Area> getAreaByCId(int cid) 
+	public List<Area> getAreaByCityId(long city_id) 
 	{
-		return areaRepository.findByCid(cid);
+		return areaRepository.findByCityId(city_id);
 	}
 
 	@Override
@@ -41,18 +41,18 @@ public class AreaServiceImpl implements AreaService
 	}
 
 	@Override
-	public ResponseEntity<Area> updateArea(int id, Area areaDetails) 
+	public ResponseEntity<Area> updateArea(long id, Area areaDetails) 
 	{
 		Area area=areaRepository.findById(id).get();
-		
-		area.setAname(areaDetails.getAname());
-		
+
+		area.setArea_name(area.getArea_name());
+
 		final Area updateArea=areaRepository.save(area);
 		return ResponseEntity.ok(updateArea);
 	}
 
 	@Override
-	public String deleteArea(int id)
+	public String deleteArea(long id)
 	{
 		Optional<Area> area=areaRepository.findById(id);
 		if(area.isPresent())
@@ -65,5 +65,4 @@ public class AreaServiceImpl implements AreaService
 			throw new RuntimeException("Area not found for the id : "+ id);
 		}
 	}
-
 }

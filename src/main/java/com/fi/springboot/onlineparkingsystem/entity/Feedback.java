@@ -1,61 +1,31 @@
 package com.fi.springboot.onlineparkingsystem.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
-@Table(name="feedback")
-public class Feedback implements Serializable
-{
-	private static final long serialVersionUID = 1L;
-	
+@Data
+@Table
+public class Feedback
+{	
 	@Id
-	@Column(name="fb_id")
-	int Fbid;
-	
-	@Column(name="fb_name")
-	String Fbname;
-	
-	@Column(name="fb_email")
-	String Fbemail;
-	
-	@Column(name="fb_message")
-	String Fbmessage;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private long id;
 
-	public int getFbid() {
-		return Fbid;
-	}
+	@Column
+	private String name;
 
-	public void setFbid(int fbid) {
-		Fbid = fbid;
-	}
-	
-	public String getFbname() {
-		return Fbname;
-	}
+	@Column
+	private String email;
 
-	public void setFbname(String fbname) {
-		Fbname = fbname;
-	}
-
-	public String getFbemail() {
-		return Fbemail;
-	}
-
-	public void setFbemail(String fbemail) {
-		Fbemail = fbemail;
-	}
-
-	public String getFbmessage() {
-		return Fbmessage;
-	}
-
-	public void setFbmessage(String fbmessage) {
-		Fbmessage = fbmessage;
-	}
+	@Column
+	private String message;
 
 }

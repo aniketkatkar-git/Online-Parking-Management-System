@@ -23,11 +23,11 @@ public class FeedbackServiceImpl implements FeedbackService
 	}
 
 	@Override
-	public Feedback getFeedbackById(int id) 
+	public Feedback getFeedbackById(long id) 
 	{
 		return feedbackRepository.findById(id).get();
 	}
-	
+
 	@Override
 	public Feedback registerFeedback(Feedback feedback) 
 	{
@@ -35,20 +35,20 @@ public class FeedbackServiceImpl implements FeedbackService
 	}
 
 	@Override
-	public ResponseEntity<Feedback>updateFeedback(int id,Feedback feedbackDetails)
+	public ResponseEntity<Feedback>updateFeedback(long id,Feedback feedbackDetails)
 	{
 		Feedback feedback=feedbackRepository.findById(id).get();
-		
-		feedback.setFbname(feedbackDetails.getFbname());
-		feedback.setFbemail(feedbackDetails.getFbemail());
-		feedback.setFbmessage(feedbackDetails.getFbmessage());
-		
+
+		feedback.setName(feedbackDetails.getName());
+		feedback.setEmail(feedbackDetails.getEmail());
+		feedback.setMessage(feedbackDetails.getMessage());
+
 		final Feedback updateFeedback=feedbackRepository.save(feedback);
 		return ResponseEntity.ok(updateFeedback);
 	}
 
 	@Override
-	public String deleteFeedback(int id) 
+	public String deleteFeedback(long id) 
 	{
 		Optional<Feedback> feedback=feedbackRepository.findById(id);
 		if(feedback.isPresent())
@@ -61,5 +61,4 @@ public class FeedbackServiceImpl implements FeedbackService
 			throw new RuntimeException("Feedback not found for the id : "+ id);
 		}
 	}
-
 }

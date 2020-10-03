@@ -1,49 +1,28 @@
 package com.fi.springboot.onlineparkingsystem.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
-@Table(name="timeslot")
-public class TimeSlot implements Serializable
-{
-	private static final long serialVersionUID = 1L;
-	
+@Data
+@Table
+public class TimeSlot
+{	
 	@Id
-	@Column(name="ts_id")
-	int Tid;
-	
-	@Column(name="pl_id")
-	int pid;
-	
-	@Column(name="ts_slots")
-	String Tsslots;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private long id;
 
-	public int getTid() {
-		return Tid;
-	}
+	@Column
+	private long parkingLocation_id;
 
-	public void setTid(int tid) {
-		Tid = tid;
-	}
+	@Column
+	private String slots;
 
-	public int getPid() {
-		return pid;
-	}
-
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
-
-	public String getTsslots() {
-		return Tsslots;
-	}
-
-	public void setTsslots(String tsslots) {
-		Tsslots = tsslots;
-	}
 }

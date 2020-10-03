@@ -1,60 +1,31 @@
 package com.fi.springboot.onlineparkingsystem.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
-@Table(name="admin")
-public class Admin implements Serializable 
-{
-	private static final long serialVersionUID = 1L;
-	
+@Data
+@Table
+public class Admin 
+{	
 	@Id
-	@Column(name ="a_username")
-	String Ausername;
-	
-	@Column(name="a_password")
-	String Apassword;
-	
-	@Column(name="a_fname")
-	String Afname;
-	
-	@Column(name="a_lname")
-	String Alname;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private String username;
 
-	public String getAusername() {
-		return Ausername;
-	}
+	@Column
+	private String password;
 
-	public void setAusername(String ausername) {
-		Ausername = ausername;
-	}
+	@Column
+	private String first_name;
 
-	public String getApassword() {
-		return Apassword;
-	}
+	@Column
+	private String last_name;
 
-	public void setApassword(String apassword) {
-		Apassword = apassword;
-	}
-
-	public String getAfname() {
-		return Afname;
-	}
-
-	public void setAfname(String afname) {
-		Afname = afname;
-	}
-
-	public String getAlname() {
-		return Alname;
-	}
-
-	public void setAlname(String alname) {
-		Alname = alname;
-	}
 }

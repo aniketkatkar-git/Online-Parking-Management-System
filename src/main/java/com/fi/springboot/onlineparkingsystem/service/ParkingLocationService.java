@@ -11,9 +11,9 @@ import com.fi.springboot.onlineparkingsystem.entity.ParkingLocation;
 public interface ParkingLocationService
 {
 	List<ParkingLocation> getAllLocations();
-	ParkingLocation getLocationById(int id);
-	List<ParkingLocation> getLocationByAId(int aid);
+	ParkingLocation getLocationById(long id);
+	List<ParkingLocation> getLocationByAreaId(long area_id);
 	public ParkingLocation registerLocation(ParkingLocation location);
-	public ResponseEntity<ParkingLocation> updateLocation(int id,ParkingLocation locationDetails);
-	public String deleteLocation(int id);
+	public ResponseEntity<ParkingLocation> updateLocation(long id,ParkingLocation locationDetails);
+	public String deleteLocation(long id);
 }

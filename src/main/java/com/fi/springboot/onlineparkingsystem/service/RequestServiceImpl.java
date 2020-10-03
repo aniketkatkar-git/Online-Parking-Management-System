@@ -23,7 +23,7 @@ public class RequestServiceImpl implements RequestService
 	}
 
 	@Override
-	public Request getRequestById(int id) 
+	public Request getRequestById(long id) 
 	{
 		return requestRepository.findById(id).get();
 	}
@@ -35,20 +35,20 @@ public class RequestServiceImpl implements RequestService
 	}
 
 	@Override
-	public ResponseEntity<Request> updateRequest(int id, Request requestDetails) 
+	public ResponseEntity<Request> updateRequest(long id, Request requestDetails) 
 	{
 		Request request=requestRepository.findById(id).get();
-		
-		request.setRpsaddress(requestDetails.getRpsaddress());
-		request.setRpscount(requestDetails.getRpscount());
-		request.setRstatus(requestDetails.getRstatus());
-		
+
+		request.setAddress(requestDetails.getAddress());
+		request.setCount(requestDetails.getCount());
+		request.setStatus(requestDetails.getStatus());
+
 		final Request updateRequest=requestRepository.save(request);
 		return ResponseEntity.ok(updateRequest);
 	}
 
 	@Override
-	public String deleteRequest(int id) 
+	public String deleteRequest(long id) 
 	{
 		Optional<Request> request=requestRepository.findById(id);
 		if(request.isPresent())

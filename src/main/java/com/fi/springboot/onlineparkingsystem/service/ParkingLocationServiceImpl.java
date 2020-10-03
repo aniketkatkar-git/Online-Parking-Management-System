@@ -23,15 +23,15 @@ public class ParkingLocationServiceImpl implements ParkingLocationService
 	}
 
 	@Override
-	public ParkingLocation getLocationById(int id)
+	public ParkingLocation getLocationById(long id)
 	{
 		return locationRepository.findById(id).get();
 	}
 
 	@Override
-	public List<ParkingLocation> getLocationByAId(int aid) 
+	public List<ParkingLocation> getLocationByAreaId(long area_id) 
 	{
-		return locationRepository.findByAid(aid);
+		return locationRepository.findByAreaId(area_id);
 	}
 
 	@Override
@@ -41,20 +41,20 @@ public class ParkingLocationServiceImpl implements ParkingLocationService
 	}
 
 	@Override
-	public ResponseEntity<ParkingLocation> updateLocation(int id, ParkingLocation locationDetails) 
+	public ResponseEntity<ParkingLocation> updateLocation(long id, ParkingLocation locationDetails) 
 	{
 		ParkingLocation location=locationRepository.findById(id).get();
 
-		location.setPlname(locationDetails.getPlname());
-		location.setPlcontactno(locationDetails.getPlcontactno());
-		location.setPlchargesperslot(locationDetails.getPlchargesperslot());
-		
+		location.setName(locationDetails.getName());
+		location.setContact_no(locationDetails.getContact_no());
+		location.setChargesperslot(locationDetails.getChargesperslot());
+
 		final ParkingLocation updateLocation=locationRepository.save(location);
 		return ResponseEntity.ok(updateLocation);
 	}
 
 	@Override
-	public String deleteLocation(int id) 
+	public String deleteLocation(long id) 
 	{
 		Optional<ParkingLocation> location=locationRepository.findById(id);
 		if(location.isPresent())

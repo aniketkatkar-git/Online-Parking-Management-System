@@ -23,15 +23,15 @@ public class ParkingSlotServiceImpl implements ParkingSlotService
 	}
 
 	@Override
-	public ParkingSlot getSlotById(int id) 
+	public ParkingSlot getSlotById(long id) 
 	{
 		return slotRepository.findById(id).get();
 	}
-	
+
 	@Override
-	public List<ParkingSlot> getPSlotByTId(int tid) 
+	public List<ParkingSlot> getParkingslotByTimeslotId(long timeslot_id) 
 	{
-		return slotRepository.findByTid(tid);
+		return slotRepository.findByTimeslotId(timeslot_id);
 	}
 
 	@Override
@@ -41,20 +41,18 @@ public class ParkingSlotServiceImpl implements ParkingSlotService
 	}
 
 	@Override
-	public ResponseEntity<ParkingSlot> updateSlot(int id, ParkingSlot slotDetails)
+	public ResponseEntity<ParkingSlot> updateSlot(long id, ParkingSlot slotDetails)
 	{
 		ParkingSlot slot=slotRepository.findById(id).get();
-		
-		slot.setTid(slotDetails.getTid());
-		slot.setPSname(slotDetails.getPSname());
-		
+
+		slot.setName(slotDetails.getName());
+
 		final ParkingSlot updateSlot=slotRepository.save(slot);
 		return ResponseEntity.ok(updateSlot);
-
 	}
 
 	@Override
-	public String deleteSlot(int id) 
+	public String deleteSlot(long id) 
 	{
 		Optional<ParkingSlot> slot=slotRepository.findById(id);
 		if(slot.isPresent())
@@ -67,5 +65,4 @@ public class ParkingSlotServiceImpl implements ParkingSlotService
 			throw new RuntimeException("ParkingSlot not found for the id : "+ id);
 		}
 	}
-
 }
