@@ -19,39 +19,39 @@ import com.fi.springboot.onlineparkingsystem.entity.Request;
 import com.fi.springboot.onlineparkingsystem.service.RequestService;
 
 @RestController
-@RequestMapping("request")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class RequestController
 {
 	@Autowired
 	RequestService requestService;
-	
-	@GetMapping("getAllRequests")
+
+	@GetMapping("api/requests")
 	public List<Request>getAllRequest()
 	{
 		return requestService.getAllRequest();
 	}
-	
-	@GetMapping("getRequestById")
-	public Request getRequestById(@RequestParam(name="id") int id)
+
+	@GetMapping("api/requests/{id}")
+	public Request getRequestById(@RequestParam(name="id") long id)
 	{
 		return requestService.getRequestById(id);
 	}
-	
-	
-	@PostMapping("registerRequest")
+
+
+	@PostMapping("api/requests")
 	public Request registerRequest(@RequestBody Request request)
 	{
 		return requestService.registerRequest(request);
 	}
-	
-	@PutMapping("updateRequest/{id}")
-	public ResponseEntity<Request> updateRequest(@PathVariable(value="id") int id,@RequestBody Request requestDetails)
+
+	@PutMapping("api/requests/{id}")
+	public ResponseEntity<Request> updateRequest(@PathVariable(value="id") long id,@RequestBody Request requestDetails)
 	{
 		return requestService.updateRequest(id, requestDetails);
 	}
-	
-	@DeleteMapping("deleteRequest/{id}")
+
+	@DeleteMapping("api/requests/{id}")
 	public String deleteRequest(@PathVariable int id)
 	{
 		return requestService.deleteRequest(id);
