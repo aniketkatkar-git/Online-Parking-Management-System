@@ -1,7 +1,5 @@
 # OnlineParkingManagementSystem
 
-This project was generated with Maven
-
 ## Development server
 
 Navigate to `http://localhost:8989/`
