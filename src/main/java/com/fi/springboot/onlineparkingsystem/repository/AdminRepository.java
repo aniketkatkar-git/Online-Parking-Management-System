@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.fi.springboot.onlineparkingsystem.entity.Admin;
 
 @Repository
+@EnableJpaReposotory
 public interface AdminRepository extends JpaRepository<Admin, Integer>
 {
 	@Query(nativeQuery=true,value="select * from admin where a_username=:a_username and a_password=:a_password")
