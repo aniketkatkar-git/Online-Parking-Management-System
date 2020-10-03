@@ -17,47 +17,47 @@ import com.fi.springboot.onlineparkingsystem.entity.User;
 import com.fi.springboot.onlineparkingsystem.service.UserService;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class UserController
 {
 	@Autowired
 	UserService userService;
-	
-	@GetMapping("getAllUsers")
+
+	@GetMapping("api/users")
 	public List<User>getAllUsers()
 	{
 		return userService.getAllUsers();
 	}
-	
-	@GetMapping("getUserById")
-	public User getUserById(@RequestParam(name="id") int id)
+
+	@GetMapping("api/users/{id}")
+	public User getUserById(@RequestParam(name="id") long id)
 	{
 		return userService.getUserById(id);
 	}
-	
-	@GetMapping("login")
-	public int  validate(@RequestParam(name="u_username") String Username,@RequestParam(name="u_password") String Password)
+
+	@GetMapping("api/users/login")
+	public int  validate(@RequestParam(name="username") String Username,@RequestParam(name="password") String Password)
 	{
-		 return userService.login(Username, Password);
+		return userService.login(Username, Password);
 	}
-	
-	@PostMapping("registerUser")
+
+	@PostMapping("api/users")
 	public User registerArea(@RequestBody User user)
 	{
 		return userService.registerUser(user);
 	}
-	
-	@PutMapping("updateUser/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable(value="id") int id,@RequestBody User userDetails)
+
+	@PutMapping("api/users/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable(value="id") long id,@RequestBody User userDetails)
 	{
 		return userService.updateUser(id, userDetails);
 	}
-	
-	@DeleteMapping("deleteUser/{id}")
-	public String deleteUser(@PathVariable int id)
+
+	@DeleteMapping("api/users/{id}")
+	public String deleteUser(@PathVariable long id)
 	{
 		return userService.deleteUser(id);
 	}
-	
+
 }

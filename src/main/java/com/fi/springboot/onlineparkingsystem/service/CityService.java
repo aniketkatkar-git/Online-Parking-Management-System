@@ -11,8 +11,8 @@ import com.fi.springboot.onlineparkingsystem.entity.City;
 public interface CityService 
 {
 	List<City> getAllCities();
-	City getCityById(int id);
+	City getCityById(long id);
 	public City registerCity(City city);
-	public ResponseEntity<City> updateCity(int id,City cityDetails);
-	public String deleteCity(int id);
+	public ResponseEntity<City> updateCity(long id,City cityDetails);
+	public String deleteCity(long id);
 }

@@ -19,40 +19,40 @@ import com.fi.springboot.onlineparkingsystem.entity.Booking;
 import com.fi.springboot.onlineparkingsystem.service.BookingService;
 
 @RestController
-@RequestMapping("booking")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class BookingController 
 {
 	@Autowired
 	BookingService bookingService;
 
-	@GetMapping("getAllBookings")
+	@GetMapping("api/booking")
 	public List<Booking>getAllBookings()
 	{
 		return bookingService.getAllBookings();
 	}
-	
-	@GetMapping("getBookingById")
-	public Booking getBookingById(@RequestParam(name="id") int id)
+
+	@GetMapping("api/booking/{id}")
+	public Booking getBookingById(@RequestParam(name="id") long id)
 	{
 		return bookingService.getBookingById(id);
 	}
-	
-	
-	@PostMapping("registerBooking")
+
+
+	@PostMapping("api/booking")
 	public Booking registerBooking(@RequestBody Booking booking)
 	{
 		return bookingService.registerBooking(booking);
 	}
-	
-	@PutMapping("updateBooking/{id}")
-	public ResponseEntity<Booking> updateBooking(@PathVariable(value="id") int id,@RequestBody Booking bookingDetails)
+
+	@PutMapping("api/booking/{id}")
+	public ResponseEntity<Booking> updateBooking(@PathVariable(value="id") long id,@RequestBody Booking bookingDetails)
 	{
 		return bookingService.updateBooking(id, bookingDetails);
 	}
-	
-	@DeleteMapping("deleteBooking/{id}")
-	public String deleteBooking(@PathVariable int id)
+
+	@DeleteMapping("api/booking/{id}")
+	public String deleteBooking(@PathVariable long id)
 	{
 		return bookingService.deleteBooking(id);
 	}

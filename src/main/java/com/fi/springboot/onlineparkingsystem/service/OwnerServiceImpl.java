@@ -23,27 +23,24 @@ public class OwnerServiceImpl implements OwnerService
 	}
 
 	@Override
-	public Owner getOwnerById(int id) 
+	public Owner getOwnerById(long id) 
 	{
 		return ownerRepository.findById(id).get();
 	}
-	
+
 
 	@Override
 	public int login(String userName, String password) 
 	{
-		 List<Owner> owner= ownerRepository.validation(userName, password);
-		 
-		 if(owner.isEmpty())
-			{
-				return 0;			
-			}
-			else
-				return 1;			
-		
+		List<Owner> owner= ownerRepository.validation(userName, password);
+
+		if(owner.isEmpty())
+			return 0;			
+		else
+			return 1;			
 	}
 
-	
+
 	@Override
 	public Owner registerOwner(Owner owner) 
 	{
@@ -51,24 +48,24 @@ public class OwnerServiceImpl implements OwnerService
 	}
 
 	@Override
-	public ResponseEntity<Owner>updateOwner(int id,Owner ownerDetails)
+	public ResponseEntity<Owner>updateOwner(long id,Owner ownerDetails)
 	{
 		Owner owner=ownerRepository.findById(id).get();
-		
-		owner.setOwnerUsername(ownerDetails.getOwnerUsername());
+
+		owner.setUsername(ownerDetails.getUsername());
 		owner.setPassword(ownerDetails.getPassword());
-		owner.setFirstName(ownerDetails.getFirstName());
-		owner.setLastName(ownerDetails.getLastName());
+		owner.setFirst_name(ownerDetails.getFirst_name());
+		owner.setLast_name(ownerDetails.getLast_name());
 		owner.setEmail(ownerDetails.getEmail());
-		owner.setContactno(ownerDetails.getContactno());
+		owner.setContact_no(ownerDetails.getContact_no());
 		owner.setAddress(ownerDetails.getAddress());
-		
+
 		final Owner updateOwner=ownerRepository.save(owner);
 		return ResponseEntity.ok(updateOwner);
 	}
 
 	@Override
-	public String deleteOwner(int id) 
+	public String deleteOwner(long id) 
 	{
 		Optional<Owner> owner=ownerRepository.findById(id);
 		if(owner.isPresent())

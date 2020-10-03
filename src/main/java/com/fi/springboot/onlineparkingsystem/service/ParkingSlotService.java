@@ -11,9 +11,9 @@ import com.fi.springboot.onlineparkingsystem.entity.ParkingSlot;
 public interface ParkingSlotService
 {
 	List<ParkingSlot> getAllSlots();
-	ParkingSlot getSlotById(int id);
-	List<ParkingSlot> getPSlotByTId(int tid);
+	ParkingSlot getSlotById(long id);
+	List<ParkingSlot> getParkingslotByTimeslotId(long timeslot_id);
 	public ParkingSlot registerSlot(ParkingSlot slot);
-	public ResponseEntity<ParkingSlot> updateSlot(int id,ParkingSlot slotDetails);
-	public String deleteSlot(int id);
+	public ResponseEntity<ParkingSlot> updateSlot(long id,ParkingSlot slotDetails);
+	public String deleteSlot(long id);
 }

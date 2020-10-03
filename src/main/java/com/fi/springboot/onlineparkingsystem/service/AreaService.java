@@ -10,9 +10,9 @@ import com.fi.springboot.onlineparkingsystem.entity.Area;
 public interface AreaService 
 {
 	List<Area> getAllAreas();
-	Area getAreaById(int id);
-	List<Area> getAreaByCId(int cid);
+	Area getAreaById(long id);
+	List<Area> getAreaByCityId(long city_id);
 	public Area registerArea(Area area);
-	public ResponseEntity<Area> updateArea(int id,Area areaDetails);
-	public String deleteArea(int id);
+	public ResponseEntity<Area> updateArea(long id,Area areaDetails);
+	public String deleteArea(long id);
 }

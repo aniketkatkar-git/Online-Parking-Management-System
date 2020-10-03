@@ -19,45 +19,45 @@ import com.fi.springboot.onlineparkingsystem.entity.TimeSlot;
 import com.fi.springboot.onlineparkingsystem.service.TimeSlotService;
 
 @RestController
-@RequestMapping("time")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class TimeSlotController 
 {
 	@Autowired
 	TimeSlotService slotService;
-	
-	@GetMapping("getAllSlots")
+
+	@GetMapping("api/timeslots")
 	public List<TimeSlot>getAllSlots()
 	{
 		return slotService.getAllSlots();
 	}
-	
-	@GetMapping("getSlotById")
+
+	@GetMapping("api/timeslots/{id}")
 	public TimeSlot getSlotById(@RequestParam(name="id") int id)
 	{
 		return slotService.getSlotById(id);
 	}
-	
-	@GetMapping("getTimeslotByPId")
-	public List<TimeSlot> getTimeslotByPId(@RequestParam(name="pid") int pid)
+
+	@GetMapping("api/timeslots")
+	public List<TimeSlot> getTimeslotByParkinglocationId(@RequestParam(name="parkingLocation_id") long parkingLocation_id)
 	{
-		return slotService.getTimeslotByPId(pid);
+		return slotService.getTimeslotByParkingLocationId(parkingLocation_id);
 	}
-	
-	@PostMapping("registerSlot")
+
+	@PostMapping("api/timeslots")
 	public TimeSlot registerSlot(@RequestBody TimeSlot slot)
 	{
 		return slotService.registerSlot(slot);
 	}
-	
-	@PutMapping("updateSlot/{id}")
-	public ResponseEntity<TimeSlot> updateSlot(@PathVariable(value="id") int id,@RequestBody TimeSlot slotDetails)
+
+	@PutMapping("api/timeslots/{id}")
+	public ResponseEntity<TimeSlot> updateSlot(@PathVariable(value="id") long id,@RequestBody TimeSlot slotDetails)
 	{
 		return slotService.updateSlot(id, slotDetails);
 	}
-	
-	@DeleteMapping("deleteSlot/{id}")
-	public String deleteSlot(@PathVariable int id)
+
+	@DeleteMapping("api/timeslots/{id}")
+	public String deleteSlot(@PathVariable long id)
 	{
 		return slotService.deleteSlot(id);
 	}

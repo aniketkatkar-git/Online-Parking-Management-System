@@ -1,50 +1,28 @@
 package com.fi.springboot.onlineparkingsystem.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
-@Table(name="area")
-public class Area implements Serializable 
+@Data
+@Table
+public class Area
 {
-	private static final long serialVersionUID = 1L;
-
 	@Id
-	@Column(name="a_id")
-	int Aid;
-	
-	@Column(name="c_id")
-	int cid;
-	
-	@Column(name="a_name")
-	String Aname;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private long id;
 
-	public int getAid() {
-		return Aid;
-	}
+	@Column
+	private long city_id;
 
-	public void setAid(int aid) {
-		Aid = aid;
-	}
+	@Column
+	private String area_name;
 
-	public int getCid() {
-		return cid;
-	}
-
-	public void setCid(int cid) {
-		this.cid = cid;
-	}
-
-	public String getAname() {
-		return Aname;
-	}
-
-	public void setAname(String aname) {
-		Aname = aname;
-	}
-	
 }

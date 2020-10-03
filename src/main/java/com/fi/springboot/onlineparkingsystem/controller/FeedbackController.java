@@ -19,40 +19,40 @@ import com.fi.springboot.onlineparkingsystem.entity.Feedback;
 import com.fi.springboot.onlineparkingsystem.service.FeedbackService;
 
 @RestController
-@RequestMapping("feedback")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class FeedbackController 
 {
 	@Autowired
 	FeedbackService feedbackService;
-	
-	@GetMapping("getAllFeedbacks")
+
+	@GetMapping("api/feedback")
 	public List<Feedback>getAllFeedbacks()
 	{
 		return feedbackService.getAllFeedbacks();
 	}
-	
-	@GetMapping("getFeedbackById")
-	public Feedback getfeedbackById(@RequestParam(name="id") int id)
+
+	@GetMapping("api/feedback/{id}")
+	public Feedback getfeedbackById(@RequestParam(name="id") long id)
 	{
 		return feedbackService.getFeedbackById(id);
 	}
-	
-	
-	@PostMapping("registerFeedback")
+
+
+	@PostMapping("api/feedback")
 	public Feedback registerFeedback(@RequestBody Feedback feedback)
 	{
 		return feedbackService.registerFeedback(feedback);
 	}
-	
-	@PutMapping("updateFeedback/{id}")
-	public ResponseEntity<Feedback> updateFeedback(@PathVariable(value="id") int id,@RequestBody Feedback feedbackDetails)
+
+	@PutMapping("api/feedback/{id}")
+	public ResponseEntity<Feedback> updateFeedback(@PathVariable(value="id") long id,@RequestBody Feedback feedbackDetails)
 	{
 		return feedbackService.updateFeedback(id, feedbackDetails);
 	}
-	
-	@DeleteMapping("deleteFeedback/{id}")
-	public String deleteFeedback(@PathVariable int id)
+
+	@DeleteMapping("api/feedback/{id}")
+	public String deleteFeedback(@PathVariable long id)
 	{
 		return feedbackService.deleteFeedback(id);
 	}

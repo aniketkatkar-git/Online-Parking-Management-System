@@ -11,9 +11,9 @@ import com.fi.springboot.onlineparkingsystem.entity.Owner;
 public interface OwnerService 
 {
 	List<Owner> getAllOwners();
-	Owner getOwnerById(int id);
+	Owner getOwnerById(long id);
 	int login(String userName,String password);
 	public Owner registerOwner(Owner owner);
-	public ResponseEntity<Owner> updateOwner(int id,Owner owmerDetails);
-	public String deleteOwner(int id);
+	public ResponseEntity<Owner> updateOwner(long id,Owner owmerDetails);
+	public String deleteOwner(long id);
 }

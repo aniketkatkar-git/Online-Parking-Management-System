@@ -16,7 +16,7 @@ public class ManagerServiceImpl implements ManagerService
 
 	@Autowired
 	ManagerRepository managerRepository; 
-	
+
 	@Override
 	public List<Manager> getAllManagers() 
 	{
@@ -24,25 +24,22 @@ public class ManagerServiceImpl implements ManagerService
 	}
 
 	@Override
-	public Manager getManagerById(int id) 
+	public Manager getManagerById(long id) 
 	{
 		return managerRepository.findById(id).get();
 	}
-	
+
 	@Override
 	public int login(String userName, String password) 
 	{
-		 List<Manager> manager= managerRepository.validation(userName, password);
-		 
-		 if(manager.isEmpty())
-			{
-				return 0;			
-			}
-			else
-				return 1;			
-		
+		List<Manager> manager= managerRepository.validation(userName, password);
+
+		if(manager.isEmpty())
+			return 0;			
+		else
+			return 1;			
 	}
-	
+
 	@Override
 	public Manager registerManager(Manager manager) 
 	{
@@ -50,21 +47,21 @@ public class ManagerServiceImpl implements ManagerService
 	}
 
 	@Override
-	public ResponseEntity<Manager>updateManager(int id,Manager managerDetails)
+	public ResponseEntity<Manager>updateManager(long id,Manager managerDetails)
 	{
 		Manager manager=managerRepository.findById(id).get();
-		
-		manager.setmUsername(managerDetails.getmUsername());
-		manager.setmPassword(managerDetails.getmPassword());
-		manager.setmEmail(managerDetails.getmEmail());
-		manager.setmContactNo(managerDetails.getmContactNo());
-		
+
+		manager.setUsername(managerDetails.getUsername());
+		manager.setPassword(managerDetails.getPassword());
+		manager.setEmail(managerDetails.getEmail());
+		manager.setContact_no(managerDetails.getContact_no());
+
 		final Manager updateManager=managerRepository.save(manager);
 		return ResponseEntity.ok(updateManager);
 	}
 
 	@Override
-	public String deleteManager(int id) 
+	public String deleteManager(long id) 
 	{
 		Optional<Manager> manager=managerRepository.findById(id);
 		if(manager.isPresent())
@@ -77,5 +74,4 @@ public class ManagerServiceImpl implements ManagerService
 			throw new RuntimeException("Manager not found for the id : "+ id);
 		}
 	}
-	
 }

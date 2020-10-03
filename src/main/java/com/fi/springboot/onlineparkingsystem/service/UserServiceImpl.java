@@ -24,50 +24,48 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public User getUserById(int id) 
+	public User getUserById(long id) 
 	{
 		return userRepository.findById(id).get();
 	}
-	
+
 
 	@Override
 	public int login(String userName, String password) 
 	{
-		 List<User> user= userRepository.validation(userName, password);
-		 
-		 if(user.isEmpty())
-			{
-				return 0;			
-			}
-			else
-				return 1;			
-		
+		List<User> user= userRepository.validation(userName, password);
+
+		if(user.isEmpty())
+			return 0;			
+		else
+			return 1;			
 	}
-	
+
 	@Override
 	public User registerUser(User user) 
 	{
 		return userRepository.save(user);
 	}
 
-	@Override
-	public ResponseEntity<User>updateUser(int id,User userDetails)
+	@Override 
+	public ResponseEntity<User>updateUser(long id,User userDetails)
 	{
 		User user=userRepository.findById(id).get();
-		
-		user.setUserName(userDetails.getUserName());
+
+		user.setUsername(userDetails.getUsername());
 		user.setPassword(userDetails.getPassword());
-		user.setFirstname(userDetails.getFirstname());
-		user.setLastname(userDetails.getLastname());
+		user.setFirst_name(userDetails.getFirst_name());
+		user.setLast_name(userDetails.getLast_name());
 		user.setEmail(userDetails.getEmail());
+		user.setContact_no(userDetails.getContact_no());
 		user.setAddress(userDetails.getAddress());
-		
+
 		final User updateUser=userRepository.save(user);
 		return ResponseEntity.ok(updateUser);
 	}
 
 	@Override
-	public String deleteUser(int id) 
+	public String deleteUser(long id) 
 	{
 		Optional<User> user=userRepository.findById(id);
 		if(user.isPresent())

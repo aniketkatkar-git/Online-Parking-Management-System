@@ -17,14 +17,12 @@ public class AdminServiceImpl implements AdminService
 	@Override
 	public int login(String userName, String password) 
 	{
-		 List<Admin> admin= adminRepository.validation(userName, password);
-		 
-		 if(admin.isEmpty())
-			{
-				return 0;			
-			}
-			else
-				return 1;			
-		
+		List<Admin> admin= adminRepository.validation(userName, password);
+
+		if(admin.isEmpty())
+			return 0;			
+		else
+			return 1;			
+
 	}
 }

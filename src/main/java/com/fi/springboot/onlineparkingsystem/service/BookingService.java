@@ -11,8 +11,8 @@ import com.fi.springboot.onlineparkingsystem.entity.Booking;
 public interface BookingService 
 {
 	List<Booking> getAllBookings();
-	Booking getBookingById(int id);
+	Booking getBookingById(long id);
 	public Booking registerBooking(Booking booking);
-	public ResponseEntity<Booking> updateBooking(int id,Booking bookingDetails);
-	public String deleteBooking(int id);
+	public ResponseEntity<Booking> updateBooking(long id,Booking bookingDetails);
+	public String deleteBooking(long id);
 }

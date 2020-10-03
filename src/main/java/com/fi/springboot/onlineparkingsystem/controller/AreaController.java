@@ -19,45 +19,45 @@ import com.fi.springboot.onlineparkingsystem.entity.Area;
 import com.fi.springboot.onlineparkingsystem.service.AreaService;
 
 @RestController
-@RequestMapping("area")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class AreaController 
 {
 	@Autowired
 	AreaService areaService;
-	
-	@GetMapping("getAllArea")
+
+	@GetMapping("api/area")
 	public List<Area>getAllAreas()
 	{
 		return areaService.getAllAreas();
 	}
-	
-	@GetMapping("getAreaById")
-	public Area getAreaById(@RequestParam(name="id") int id)
+
+	@GetMapping("api/area/{id}")
+	public Area getAreaById(@RequestParam(name="id") long id)
 	{
 		return areaService.getAreaById(id);
 	}
-	
-	@GetMapping("getAreaByCityId")
-	public List<Area> getAreaByCityId(@RequestParam(name="cid") int cid)
+
+	@GetMapping("api/area/city/{city_id}")
+	public List<Area> getAreaByCityId(@RequestParam(name="city_id") long city_id)
 	{
-		return areaService.getAreaByCId(cid);
+		return areaService.getAreaByCityId(city_id);
 	}
-	
-	@PostMapping("registerArea")
+
+	@PostMapping("api/area")
 	public Area registerArea(@RequestBody Area area)
 	{
 		return areaService.registerArea(area);
 	}
-	
-	@PutMapping("updateArea/{id}")
-	public ResponseEntity<Area> updateArea(@PathVariable(value="id") int id,@RequestBody Area areaDetails)
+
+	@PutMapping("api/area/{id}")
+	public ResponseEntity<Area> updateArea(@PathVariable(value="id") long id,@RequestBody Area areaDetails)
 	{
 		return areaService.updateArea(id, areaDetails);
 	}
-	
-	@DeleteMapping("deleteArea/{id}")
-	public String deleteArea(@PathVariable int id)
+
+	@DeleteMapping("api/area/{id}")
+	public String deleteArea(@PathVariable long id)
 	{
 		return areaService.deleteArea(id);
 	}

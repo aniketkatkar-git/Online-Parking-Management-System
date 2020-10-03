@@ -11,9 +11,9 @@ import com.fi.springboot.onlineparkingsystem.entity.Manager;
 public interface ManagerService
 {
 	List<Manager> getAllManagers();
-	Manager getManagerById(int id);
+	Manager getManagerById(long id);
 	int login(String userName,String password);
 	public Manager registerManager(Manager manager);
-	public ResponseEntity<Manager> updateManager(int id,Manager managerDetails);
-	public String deleteManager(int id);
+	public ResponseEntity<Manager> updateManager(long id,Manager managerDetails);
+	public String deleteManager(long id);
 }

@@ -19,44 +19,44 @@ import com.fi.springboot.onlineparkingsystem.entity.ParkingLocation;
 import com.fi.springboot.onlineparkingsystem.service.ParkingLocationService;
 
 @RestController
-@RequestMapping("location")
+@RequestMapping
 @CrossOrigin("http://localhost:4200")
 public class ParkingLocationController 
 {
 	@Autowired
 	ParkingLocationService locationService;
 
-	@GetMapping("getAllLocations")
+	@GetMapping("api/parkinglocation")
 	public List<ParkingLocation>getAllLocations()
 	{
 		return locationService.getAllLocations();
 	}
-	
-	@GetMapping("getLocationById")
-	public ParkingLocation getLocationById(@RequestParam(name="id") int id)
+
+	@GetMapping("api/parkinglocation/{id}")
+	public ParkingLocation getLocationById(@RequestParam(name="id") long id)
 	{
 		return locationService.getLocationById(id);
 	}
-	
-	@GetMapping("getLocationByAId")
-	public List<ParkingLocation> getLocationByAId(@RequestParam(name="aid") int aid)
+
+	@GetMapping("api/parkinglocation/area/{area_id}")
+	public List<ParkingLocation> getLocationByAId(@RequestParam(name="area_id") long area_id)
 	{
-		return locationService.getLocationByAId(aid);
+		return locationService.getLocationByAreaId(area_id);
 	}
-	
-	@PostMapping("registerLocation")
+
+	@PostMapping("api/parkinglocation")
 	public ParkingLocation registerLocation(@RequestBody ParkingLocation location)
 	{
 		return locationService.registerLocation(location);
 	}
-	
-	@PutMapping("updateLocation/{id}")
-	public ResponseEntity<ParkingLocation> updateLocation(@PathVariable(value="id") int id,@RequestBody ParkingLocation locationDetails)
+
+	@PutMapping("api/parkinglocation/{id}")
+	public ResponseEntity<ParkingLocation> updateLocation(@PathVariable(value="id") long id,@RequestBody ParkingLocation locationDetails)
 	{
 		return locationService.updateLocation(id, locationDetails);
 	}
-	
-	@DeleteMapping("deleteLocation/{id}")
+
+	@DeleteMapping("api/parkinglocation/{id}")
 	public String deleteLocation(@PathVariable int id)
 	{
 		return locationService.deleteLocation(id);

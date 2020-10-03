@@ -11,9 +11,9 @@ import com.fi.springboot.onlineparkingsystem.entity.User;
 public interface UserService 
 {
 	List<User> getAllUsers();
-	User getUserById(int id);
+	User getUserById(long id);
 	int login(String userName,String password);
 	public User registerUser(User user);
-	public ResponseEntity<User> updateUser(int id,User userDetails);
-	public String deleteUser(int id);
+	public ResponseEntity<User> updateUser(long id,User userDetails);
+	public String deleteUser(long id);
 }
